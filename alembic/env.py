@@ -9,20 +9,26 @@ from sqlalchemy.engine import Connection
 from alembic import context
 from dotenv import load_dotenv, find_dotenv
 
-# 1) Загружаем .env, перезаписывая переменные окружения
+# -- 1) Загружаем .env прежде, чем брать URL
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path, override=True)
 
-# 2) Конфиг Alembic (из alembic.ini, без sqlalchemy.url там)
+# -- 2) Берём конфиг Alembic и устанавливаем реальный URL
 config = context.config
 fileConfig(config.config_file_name)
 
-# 3) Метаданные ваших моделей
+db_url = os.getenv("DATABASE_URL")
+if not db_url:
+    raise RuntimeError("DATABASE_URL is not set in .env")
+# ВАЖНО: говорим Alembic, куда подключаться
+config.set_main_option("sqlalchemy.url", db_url)
+
+# -- 3) Ваши метаданные
 from app.models import Base
 target_metadata = Base.metadata
 
 def run_migrations_offline():
-    url = os.getenv("DATABASE_URL")
+    url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -33,38 +39,27 @@ def run_migrations_offline():
         context.run_migrations()
 
 def do_run_migrations(sync_conn: Connection):
-    """
-    Запускает миграции в синхронном контексте
-    (Alembic не знает про asyncio).
-    """
     context.configure(
         connection=sync_conn,
-        target_metadata=target_metadata
+        target_metadata=target_metadata,
     )
     with context.begin_transaction():
         context.run_migrations()
 
 async def run_async_migrations():
-    """
-    Оболочка для асинхронного движка:
-    создаём AsyncEngine, подключаемся async with,
-    и отдаем sync_conn внутрь do_run_migrations.
-    """
+    url = config.get_main_option("sqlalchemy.url")
     engine = create_async_engine(
-        os.getenv("DATABASE_URL"),
+        url,
         poolclass=pool.NullPool,
         future=True,
     )
     async with engine.connect() as async_conn:
-        # .run_sync() переключает в sync_conn и вызывает do_run_migrations
         await async_conn.run_sync(do_run_migrations)
     await engine.dispose()
 
 def run_migrations_online():
-    # Запускаем асинхронную обёртку через asyncio.run
     asyncio.run(run_async_migrations())
 
-# Выбор режима
 if context.is_offline_mode():
     run_migrations_offline()
 else:
