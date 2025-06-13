@@ -1,0 +1,290 @@
+2025-06-13 05:31:59,400 INFO     [main.py:27] Приложение запущено
+2025-06-13 05:32:16,961 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/healthcheck
+2025-06-13 05:32:16,961 DEBUG    [main.py:51] Проверка работоспособности
+2025-06-13 05:32:16,962 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 05:33:03,305 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 05:33:03,306 DEBUG    [deps.py:90] Начало обработки авторизации. Заголовок: None
+2025-06-13 05:33:03,306 WARNING  [deps.py:93] Заголовок Authorization отсутствует полностью
+2025-06-13 05:33:03,307 ERROR    [deps.py:141] HTTP ошибка: Требуется заголовок Authorization
+Traceback (most recent call last):
+  File "/app/app/deps.py", line 94, in get_current_user
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 401: Требуется заголовок Authorization
+2025-06-13 05:33:03,311 DEBUG    [main.py:35] Ответ: 401
+2025-06-13 06:24:30,772 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:24:34,342 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/docs
+2025-06-13 06:24:34,342 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:24:34,491 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/openapi.json
+2025-06-13 06:24:34,508 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:24:39,167 DEBUG    [main.py:32] Входящий запрос: POST http://127.0.0.1:8000/api/v1/public/register
+2025-06-13 06:24:39,220 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 06:24:39,221 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:24:39,222 INFO     [base.py:1842] select current_schema()
+2025-06-13 06:24:39,222 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:24:39,224 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 06:24:39,224 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:24:39,225 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:24:39,227 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 06:24:39,227 INFO     [base.py:1842] [generated in 0.00027s] (UUID('14682949-4c61-44c6-85c6-539ab015f6f9'), 'ivan_ivanov', '', 'ebb46b9d-4e7b-4c53-956f-d1962a58b215', 'USER', datetime.datetime(2025, 6, 13, 6, 24, 39, 227781, tzinfo=datetime.timezone.utc))
+2025-06-13 06:24:39,262 INFO     [base.py:2704] COMMIT
+2025-06-13 06:24:39,274 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:24:39,276 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 06:24:39,276 INFO     [base.py:1842] [generated in 0.00032s] (UUID('14682949-4c61-44c6-85c6-539ab015f6f9'),)
+2025-06-13 06:24:39,281 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:24:39,282 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 06:24:55,283 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/healthcheck
+2025-06-13 06:24:55,286 DEBUG    [main.py:51] Проверка работоспособности
+2025-06-13 06:24:55,289 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:25:05,429 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:25:05,441 DEBUG    [main.py:35] Ответ: 401
+2025-06-13 06:30:49,779 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:30:53,017 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/docs
+2025-06-13 06:30:53,018 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:30:53,195 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/openapi.json
+2025-06-13 06:30:53,212 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:31:55,395 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:31:55,397 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 06:33:37,014 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:33:56,569 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/
+2025-06-13 06:33:56,570 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:33:56,827 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/favicon.ico
+2025-06-13 06:33:56,828 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:34:00,914 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 06:34:00,914 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:34:01,023 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 06:34:01,040 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:34:06,164 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 06:34:06,207 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 06:34:06,207 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:34:06,209 INFO     [base.py:1842] select current_schema()
+2025-06-13 06:34:06,209 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:34:06,211 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 06:34:06,211 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:34:06,217 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:34:06,221 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 06:34:06,221 INFO     [base.py:1842] [generated in 0.00055s] (UUID('134b5875-09ac-4cc0-b148-a22820a3de74'), 'ivan_ivanov', '', '4cba5079-5ece-4245-a5c7-b0f2f367c952', 'USER', datetime.datetime(2025, 6, 13, 6, 34, 6, 221330, tzinfo=datetime.timezone.utc))
+2025-06-13 06:34:06,235 INFO     [base.py:2704] COMMIT
+2025-06-13 06:34:06,240 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:34:06,243 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 06:34:06,243 INFO     [base.py:1842] [generated in 0.00034s] (UUID('134b5875-09ac-4cc0-b148-a22820a3de74'),)
+2025-06-13 06:34:06,246 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:34:06,248 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 06:34:21,952 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/admin/balance/
+2025-06-13 06:34:21,955 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 06:40:27,931 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:40:38,866 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 06:40:38,867 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:40:39,125 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 06:40:39,149 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:40:50,660 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/admin/balance/
+2025-06-13 06:40:50,661 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 06:42:27,203 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 06:42:27,277 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 06:42:27,278 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:42:27,284 INFO     [base.py:1842] select current_schema()
+2025-06-13 06:42:27,285 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:42:27,293 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 06:42:27,293 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:42:27,295 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:42:27,313 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 06:42:27,314 INFO     [base.py:1842] [generated in 0.00086s] (UUID('548d8690-6d39-469b-9a8d-babc1d146888'), 'ivaaan_ivanov', '', '679f4ec6-0f2d-46cb-92b7-6a6162d96a05', 'ADMIN', datetime.datetime(2025, 6, 13, 6, 42, 27, 313627, tzinfo=datetime.timezone.utc))
+2025-06-13 06:42:27,338 INFO     [base.py:2704] COMMIT
+2025-06-13 06:42:27,351 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:42:27,354 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 06:42:27,355 INFO     [base.py:1842] [generated in 0.00049s] (UUID('548d8690-6d39-469b-9a8d-babc1d146888'),)
+2025-06-13 06:42:27,364 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:42:27,366 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 06:42:55,137 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/admin/users
+2025-06-13 06:42:55,153 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 06:46:21,126 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/balance/
+2025-06-13 06:46:21,128 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:46:43,644 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:46:48,056 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/balance/
+2025-06-13 06:46:48,056 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:47:17,809 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/balance/
+2025-06-13 06:47:17,810 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:49:01,425 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:49:01,456 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 06:49:01,456 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:49:01,457 INFO     [base.py:1842] select current_schema()
+2025-06-13 06:49:01,457 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:49:01,458 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 06:49:01,458 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:49:01,460 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:49:01,472 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 06:49:01,473 INFO     [base.py:1842] [generated in 0.00031s] ('4cba5079-5ece-4245-a5c7-b0f2f367c5c7',)
+2025-06-13 06:49:01,482 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:49:01,483 DEBUG    [main.py:35] Ответ: 401
+2025-06-13 06:51:26,274 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:51:26,275 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:51:26,276 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 06:51:26,276 INFO     [base.py:1842] [cached since 139s ago] ('679f4ec6-0f2d-46cb-92b7-6a6162d96a05',)
+2025-06-13 06:51:26,279 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:51:26,280 ERROR    [main.py:38] Ошибка при обработке запроса: SQL expression element or literal value expected, got <app.models.User object at 0x7f1fc5e5d390>.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 803, in _literal_coercion
+    return expr._bind_param(operator, element, type_=bindparam_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 4624, in _bind_param
+    return BindParameter(
+           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 2043, in __init__
+    self.type = _compared_to_type.coerce_compared_value(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/sqltypes.py", line 3711, in coerce_compared_value
+    return super().coerce_compared_value(op, value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/type_api.py", line 1059, in coerce_compared_value
+    _coerced_type = _resolve_value_to_type(value)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/sqltypes.py", line 3902, in _resolve_value_to_type
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Object <app.models.User object at 0x7f1fc5e5d390> is not legal as a SQL literal value
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/main.py", line 34, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 156, in call_next
+    raise app_exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 141, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/api/balance.py", line 26, in get_balances
+    stmt = select(Balance).where(Balance.user_id == current_user)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/operators.py", line 584, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/attributes.py", line 453, in operate
+    return op(self.comparator, *other, **kwargs)  # type: ignore[no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/operators.py", line 584, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/properties.py", line 479, in operate
+    return op(self.__clause_element__(), *other, **kwargs)  # type: ignore[no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/annotation.py", line 371, in __eq__
+    return self.__element.__class__.__eq__(self, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/operators.py", line 584, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 1523, in operate
+    return op(self.comparator, *other, **kwargs)  # type: ignore[no-any-return]  # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/operators.py", line 584, in __eq__
+    return self.operate(eq, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/type_api.py", line 212, in operate
+    return op_fn(self.expr, op, *other, **addtl_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/default_comparator.py", line 121, in _boolean_compare
+    obj = coercions.expect(
+          ^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 395, in expect
+    resolved = impl._literal_coercion(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 805, in _literal_coercion
+    self._raise_for_expected(element, err=err)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 784, in _raise_for_expected
+    return super()._raise_for_expected(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/coercions.py", line 518, in _raise_for_expected
+    raise exc.ArgumentError(msg, code=code) from err
+sqlalchemy.exc.ArgumentError: SQL expression element or literal value expected, got <app.models.User object at 0x7f1fc5e5d390>.
+2025-06-13 06:53:48,328 INFO     [main.py:27] Приложение запущено
+2025-06-13 06:53:49,635 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:53:49,663 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 06:53:49,663 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:53:49,665 INFO     [base.py:1842] select current_schema()
+2025-06-13 06:53:49,665 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:53:49,667 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 06:53:49,667 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 06:53:49,668 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:53:49,682 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 06:53:49,682 INFO     [base.py:1842] [generated in 0.00028s] ('679f4ec6-0f2d-46cb-92b7-6a6162d96a05',)
+2025-06-13 06:53:49,691 INFO     [base.py:1842] SELECT balances.id, balances.user_id, balances.ticker, balances.amount 
+FROM balances 
+WHERE balances.user_id = $1::UUID
+2025-06-13 06:53:49,691 INFO     [base.py:1842] [generated in 0.00027s] (UUID('548d8690-6d39-469b-9a8d-babc1d146888'),)
+2025-06-13 06:53:49,695 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:53:49,695 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:54:09,300 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 06:54:09,300 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:54:09,415 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 06:54:09,458 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:54:22,022 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/admin/balance/
+2025-06-13 06:54:22,023 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 06:56:09,226 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/bausers
+2025-06-13 06:56:09,227 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 06:56:24,832 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/balance/
+2025-06-13 06:56:24,833 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:56:24,834 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 06:56:24,834 INFO     [base.py:1842] [cached since 149.3s ago] ('679f4ec6-0f2d-46cb-92b7-6a6162d96a05',)
+2025-06-13 06:56:24,836 INFO     [base.py:1842] SELECT balances.id, balances.user_id, balances.ticker, balances.amount 
+FROM balances 
+WHERE balances.user_id = $1::UUID
+2025-06-13 06:56:24,836 INFO     [base.py:1842] [cached since 149.3s ago] (UUID('548d8690-6d39-469b-9a8d-babc1d146888'),)
+2025-06-13 06:56:24,837 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:56:24,838 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:57:06,399 DEBUG    [main.py:32] Входящий запрос: GET http://127.0.0.1:8000/api/v1/admin/users
+2025-06-13 06:57:06,400 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 06:57:06,400 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 06:57:06,400 INFO     [base.py:1842] [cached since 188.6s ago] ('679f4ec6-0f2d-46cb-92b7-6a6162d96a05',)
+2025-06-13 06:57:06,402 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 06:57:06,402 INFO     [base.py:1842] [generated in 0.00019s] (UUID('548d8690-6d39-469b-9a8d-babc1d146888'),)
+2025-06-13 06:57:06,403 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users
+2025-06-13 06:57:06,404 INFO     [base.py:1842] [generated in 0.00019s] ()
+2025-06-13 06:57:06,405 INFO     [base.py:2701] ROLLBACK
+2025-06-13 06:57:06,405 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 06:57:57,461 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/admin/users
+2025-06-13 06:57:57,462 DEBUG    [main.py:35] Ответ: 422

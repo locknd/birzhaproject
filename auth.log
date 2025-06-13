@@ -1,0 +1,7 @@
+2025-06-13 05:33:03,306 - app.deps - DEBUG - Начало обработки авторизации. Заголовок: None [deps.py:90]
+2025-06-13 05:33:03,306 - app.deps - WARNING - Заголовок Authorization отсутствует полностью [deps.py:93]
+2025-06-13 05:33:03,307 - app.deps - ERROR - HTTP ошибка: Требуется заголовок Authorization [deps.py:141]
+Traceback (most recent call last):
+  File "/app/app/deps.py", line 94, in get_current_user
+    raise HTTPException(
+fastapi.exceptions.HTTPException: 401: Требуется заголовок Authorization
