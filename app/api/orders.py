@@ -18,7 +18,7 @@ from app.schemas import (
     Ok,
 )
 
-router = APIRouter(prefix="/api/v1/orders", tags=["Orders"])
+router = APIRouter(prefix="/api/v1/order", tags=["Order"])
 
 
 @router.post(
