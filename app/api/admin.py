@@ -32,23 +32,28 @@ async def get_current_admin(
 
 
 
-@router.post("/instrument", response_model=Ok, status_code=status.HTTP_201_CREATED)
-async def add_instrument(
-    instr: InstrumentSchema,
-    _admin: User = Depends(get_current_admin),
-    db: AsyncSession = Depends(get_db),
-):
-    # Проверка уникальности тикера
-    stmt = select(Instrument).where(Instrument.ticker == instr.ticker)
-    result = await db.execute(stmt)
-    instrument = result.scalar_one_or_none()
-    if instrument:
-        raise HTTPException(status_code=409, detail=f"Instrument {instr.ticker} already exists")
-    # Создаём новый инструмент
-    new = Instrument(ticker=instr.ticker, name=instr.name, currency=instr.currency)
-    db.add(new)
-    await db.commit()
-    return Ok()
+    @router.post("/instrument", response_model=Ok, status_code=status.HTTP_201_CREATED)
+    async def add_instrument(
+        instr: Instrument,
+        _admin: User = Depends(get_current_admin),
+        db: AsyncSession = Depends(get_db),
+    ):
+        # Проверка уникальности
+        stmt = select(Instrument).where(Instrument.ticker == instr.ticker)
+        
+        # Дожидаемся выполнения запроса
+        result = await db.execute(stmt)
+        instrument = result.scalar_one_or_none()
+
+        if instrument:
+            raise HTTPException(status_code=409,
+                                detail=f"Instrument {instr.ticker} already exists")
+        
+        # Создаём новый инструмент
+        new = Instrument(ticker=instr.ticker, name=instr.name)
+        db.add(new)
+        await db.commit()
+        return Ok()
 
 
 @router.delete("/instrument/{ticker}", response_model=Ok)
@@ -77,42 +82,6 @@ async def list_users(
     return [UserOut.model_validate(u) for u in users]
 
 
-@router.delete("/user/{user_id}", response_model=Ok)
-async def delete_user(
-    user_id: UUID,
-    _admin: User = Depends(get_current_admin),  # Проверка, что пользователь - администратор
-    db: AsyncSession = Depends(get_db),
-):
-    """
-    Удаляет пользователя по его ID. Только администратор может вызвать этот эндпоинт.
-    """
-    # 1) Удаляем все ордера этого пользователя
-    stmt_orders = delete(Order).where(Order.user_id == user_id)
-    await db.execute(stmt_orders)
-
-    # 2) Удаляем все балансы этого пользователя
-    stmt_balances = delete(Balance).where(Balance.user_id == user_id)
-    await db.execute(stmt_balances)
-
-    # 3) Удаляем все транзакции, связанные с этим пользователем
-    stmt_transactions = delete(Transaction).where(
-        (Transaction.buy_order_id == user_id) | (Transaction.sell_order_id == user_id)
-    )
-    await db.execute(stmt_transactions)
-
-    # 4) Можно добавить очистку других связанных таблиц (например, жалоб, сообщений, историй и т.д.)
-    # stmt_complaints = delete(Complaint).where(Complaint.user_id == user_id)
-    # await db.execute(stmt_complaints)
-
-    # 5) Теперь удаляем самого пользователя
-    stmt_user = delete(User).where(User.id == user_id)
-    res = await db.execute(stmt_user)
-    if res.rowcount == 0:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    # 6) Сохраняем изменения
-    await db.commit()
-    return Ok()
 
 @router.post("/balance/deposit", response_model=Ok)
 async def deposit(
