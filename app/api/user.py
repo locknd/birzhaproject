@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from uuid import UUID
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,17 +10,26 @@ router = APIRouter(prefix="/api/v1/admin/user", tags=["User"], dependencies=[Dep
 
 
 
-@router.delete("/{user_id}", response_model=UserOut)
+@router.delete("/{user_id}", response_model=Ok)
 async def delete_user(
+    request: Request,
     user_id: UUID,
-    current_user_id: UUID = Depends(get_current_user),  # Получаем текущего пользователя
+    current_user: User = Depends(get_current_user),  # Получаем объект пользователя
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Удаляет пользователя по его ID. Только администратор может вызвать этот эндпоинт,
-    но пользователь может удалить себя, если его ID совпадает с переданным.
+    Удаляет пользователя по его ID. Админ может удалить любого, обычный пользователь — только себя.
     """
-    if current_user_id != user_id:
+    # Проверка на наличие тела в DELETE-запросе
+    body = await request.body()
+    if body not in (b"", b"{}"):
+        raise HTTPException(
+            status_code=422,
+            detail="DELETE-запрос не должен содержать тело"
+        )
+
+    # Проверка прав
+    if not (getattr(current_user, "role", None) == "ADMIN" or getattr(current_user, "id", None) == user_id):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You can only delete your own account"

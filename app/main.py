@@ -1,5 +1,7 @@
 import logging
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 from app.api.public import router as public_router
 from app.api.balance import router as balance_router
 from app.api.orders import router as orders_router
@@ -23,6 +25,20 @@ app = FastAPI(
     description="Мини-биржа"
 )
 
+# Middleware для проверки тела в DELETE-запросах
+class DeleteBodyValidatorMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        if request.method == "DELETE":
+            body = await request.body()
+            if body not in (b"", b"{}"):
+                return JSONResponse(
+                    status_code=422,
+                    content={"detail": "DELETE-запрос не должен содержать тело"}
+                )
+        return await call_next(request)
+
+app.add_middleware(DeleteBodyValidatorMiddleware)
+
 # Логируем старт приложения
 logger.info("Приложение запущено")
 
@@ -44,9 +60,3 @@ app.include_router(balance_router)
 app.include_router(orders_router)
 app.include_router(admins_router)
 app.include_router(user_router)
-
-# Проверочный эндпоинт
-@app.get("/healthcheck")
-async def healthcheck():
-    logger.debug("Проверка работоспособности")
-    return {"status": "ok"}

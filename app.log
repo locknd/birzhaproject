@@ -781,3 +781,404 @@ FROM users
 2025-06-13 15:55:24,136 DEBUG    [main.py:35] Ответ: 200
 2025-06-13 15:55:24,235 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
 2025-06-13 15:55:24,236 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 18:03:11,057 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:03:11,073 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 18:03:47,747 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:03:47,761 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 18:03:47,765 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 18:03:47,765 INFO     [base.py:1842] [cached since 7674s ago] (UUID('2a4b3a57-226b-47db-94c8-1452bb7859c5'), 'ivan_ivanov', '', '33f0d6d9-a127-43a5-bc97-2498d8fd6e7b', 'USER', datetime.datetime(2025, 6, 13, 18, 3, 47, 765168, tzinfo=datetime.timezone.utc))
+2025-06-13 18:03:47,781 INFO     [base.py:2701] ROLLBACK
+2025-06-13 18:03:47,784 DEBUG    [main.py:35] Ответ: 409
+2025-06-13 18:03:54,436 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:03:54,438 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 18:03:54,438 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 18:03:54,438 INFO     [base.py:1842] [cached since 7681s ago] (UUID('d888470f-3fd7-46ce-bc1b-d2661f1c98fd'), 'ivan_ivov', '', '8a361e45-0072-42bb-849b-2db4730bbf83', 'USER', datetime.datetime(2025, 6, 13, 18, 3, 54, 438436, tzinfo=datetime.timezone.utc))
+2025-06-13 18:03:54,440 INFO     [base.py:2704] COMMIT
+2025-06-13 18:03:54,448 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 18:03:54,449 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 18:03:54,450 INFO     [base.py:1842] [cached since 7681s ago] (UUID('d888470f-3fd7-46ce-bc1b-d2661f1c98fd'),)
+2025-06-13 18:03:54,455 INFO     [base.py:2701] ROLLBACK
+2025-06-13 18:03:54,455 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 18:04:10,925 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:04:10,928 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 18:05:57,742 INFO     [main.py:27] Приложение запущено
+2025-06-13 18:06:02,520 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:06:02,523 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 18:06:21,553 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:06:21,556 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 18:06:29,234 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 18:06:29,277 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 18:06:29,277 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 18:06:29,279 INFO     [base.py:1842] select current_schema()
+2025-06-13 18:06:29,279 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 18:06:29,281 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 18:06:29,281 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 18:06:29,282 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 18:06:29,283 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 18:06:29,284 INFO     [base.py:1842] [generated in 0.00024s] (UUID('d832719c-9cd0-46ec-8876-0cc92d0dd046'), 'ivan_ivovvv', '', 'ab692ca7-3467-4e4b-aefe-a81af22fca28', 'USER', datetime.datetime(2025, 6, 13, 18, 6, 29, 283889, tzinfo=datetime.timezone.utc))
+2025-06-13 18:06:29,295 INFO     [base.py:2704] COMMIT
+2025-06-13 18:06:29,299 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 18:06:29,300 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 18:06:29,300 INFO     [base.py:1842] [generated in 0.00020s] (UUID('d832719c-9cd0-46ec-8876-0cc92d0dd046'),)
+2025-06-13 18:06:29,303 INFO     [base.py:2701] ROLLBACK
+2025-06-13 18:06:29,303 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 18:08:50,613 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/api/v1/public/register
+2025-06-13 18:08:50,614 DEBUG    [main.py:35] Ответ: 405
+2025-06-13 19:33:07,734 INFO     [main.py:27] Приложение запущено
+2025-06-13 19:34:20,781 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:34:20,832 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 19:34:20,833 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:34:20,834 INFO     [base.py:1842] select current_schema()
+2025-06-13 19:34:20,834 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:34:20,835 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 19:34:20,835 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:34:20,836 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:34:20,838 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 19:34:20,838 INFO     [base.py:1842] [generated in 0.00023s] (UUID('14528361-e02a-4d33-9833-4179c0fcad44'), 'ivan_ivanov', '', 'cbbe8076-f77f-4044-a6ff-6aa0a8b93890', 'USER', datetime.datetime(2025, 6, 13, 19, 34, 20, 838032, tzinfo=datetime.timezone.utc))
+2025-06-13 19:34:20,850 INFO     [base.py:2704] COMMIT
+2025-06-13 19:34:20,853 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:34:20,854 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 19:34:20,854 INFO     [base.py:1842] [generated in 0.00020s] (UUID('14528361-e02a-4d33-9833-4179c0fcad44'),)
+2025-06-13 19:34:20,857 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:34:20,858 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 19:34:32,244 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:34:32,247 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:34:58,750 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:34:58,752 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:35:12,596 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:35:12,597 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:39:40,999 INFO     [main.py:27] Приложение запущено
+2025-06-13 19:44:06,885 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/not-a-uuid
+2025-06-13 19:44:06,922 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 19:44:06,923 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:44:06,924 INFO     [base.py:1842] select current_schema()
+2025-06-13 19:44:06,924 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:44:06,925 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 19:44:06,925 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 19:44:06,926 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:44:06,940 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:44:06,941 INFO     [base.py:1842] [generated in 0.00024s] ('your_api_key',)
+2025-06-13 19:44:06,949 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:44:06,949 DEBUG    [main.py:35] Ответ: 401
+2025-06-13 19:44:40,201 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 19:44:40,202 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:44:40,202 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:44:40,202 INFO     [base.py:1842] [cached since 30.53s ago] ('your_api_key',)
+2025-06-13 19:44:40,203 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:44:40,204 DEBUG    [main.py:35] Ответ: 401
+2025-06-13 19:45:09,992 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 19:45:09,993 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 19:45:10,090 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 19:45:10,110 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 19:45:17,265 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:45:17,267 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:45:22,240 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 19:45:22,240 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 19:45:22,330 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 19:45:22,331 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 19:45:28,823 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:45:28,825 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:45:28,827 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 19:45:28,827 INFO     [base.py:1842] [generated in 0.00033s] (UUID('9774477b-7a86-4c34-9a04-16fbe4fc44b5'), 'ivan_ivanov', '', '07d89043-b247-4259-bb56-b64b6bca14e1', 'ADMIN', datetime.datetime(2025, 6, 13, 19, 45, 28, 827122, tzinfo=datetime.timezone.utc))
+2025-06-13 19:45:28,832 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:45:28,834 DEBUG    [main.py:35] Ответ: 409
+2025-06-13 19:46:29,378 DEBUG    [main.py:32] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 19:46:29,380 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:46:29,381 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 19:46:29,382 INFO     [base.py:1842] [cached since 55.18s ago] (UUID('e4b90b74-8b33-4e01-afc0-4357877b2324'), 'ivan_ivanov', '', '16518b19-4c00-4fa5-b108-7b7f54b110a1', 'ADMIN', datetime.datetime(2025, 6, 13, 19, 46, 29, 381577, tzinfo=datetime.timezone.utc))
+2025-06-13 19:46:29,383 INFO     [base.py:2704] COMMIT
+2025-06-13 19:46:29,387 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:46:29,389 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 19:46:29,389 INFO     [base.py:1842] [generated in 0.00029s] (UUID('e4b90b74-8b33-4e01-afc0-4357877b2324'),)
+2025-06-13 19:46:29,392 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:46:29,392 DEBUG    [main.py:35] Ответ: 201
+2025-06-13 19:47:15,679 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/not-a-uuid
+2025-06-13 19:47:15,680 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:47:15,680 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:47:15,680 INFO     [base.py:1842] [cached since 172.3s ago] ('16518b19-4c00-4fa5-b108-7b7f54b110a1',)
+2025-06-13 19:47:15,682 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:47:15,683 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:47:47,689 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 19:47:47,690 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:47:47,690 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:47:47,691 INFO     [base.py:1842] [cached since 201.6s ago] ('16518b19-4c00-4fa5-b108-7b7f54b110a1',)
+2025-06-13 19:47:47,694 INFO     [base.py:1842] SELECT orders.id, orders.user_id, orders.ticker, orders.side, orders.quantity, orders.price, orders.status, orders.filled_qty, orders.created_at 
+FROM orders 
+WHERE orders.id = $1::UUID AND orders.user_id = $2::UUID AND orders.status = $3::orderstatusenum
+2025-06-13 19:47:47,694 INFO     [base.py:1842] [generated in 0.00030s] (UUID('11111111-1111-1111-1111-111111111111'), UUID('e4b90b74-8b33-4e01-afc0-4357877b2324'), 'NEW')
+2025-06-13 19:47:47,705 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:47:47,706 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 19:48:04,154 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 19:48:04,155 DEBUG    [main.py:35] Ответ: 422
+2025-06-13 19:48:43,568 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 19:48:43,570 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:48:43,570 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:48:43,570 INFO     [base.py:1842] [cached since 254.7s ago] ('16518b19-4c00-4fa5-b108-7b7f54b110a1',)
+2025-06-13 19:48:43,573 INFO     [base.py:1842] SELECT orders.id, orders.user_id, orders.ticker, orders.side, orders.quantity, orders.price, orders.status, orders.filled_qty, orders.created_at 
+FROM orders 
+WHERE orders.id = $1::UUID AND orders.user_id = $2::UUID AND orders.status = $3::orderstatusenum
+2025-06-13 19:48:43,573 INFO     [base.py:1842] [cached since 53.1s ago] (UUID('11111111-1111-1111-1111-111111111111'), UUID('e4b90b74-8b33-4e01-afc0-4357877b2324'), 'NEW')
+2025-06-13 19:48:43,574 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:48:43,575 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 19:57:43,205 DEBUG    [main.py:32] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 19:57:43,207 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 19:57:43,207 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 19:57:43,207 INFO     [base.py:1842] [cached since 748.1s ago] ('16518b19-4c00-4fa5-b108-7b7f54b110a1',)
+2025-06-13 19:57:43,209 INFO     [base.py:1842] SELECT orders.id, orders.user_id, orders.ticker, orders.side, orders.quantity, orders.price, orders.status, orders.filled_qty, orders.created_at 
+FROM orders 
+WHERE orders.id = $1::UUID AND orders.user_id = $2::UUID AND orders.status = $3::orderstatusenum
+2025-06-13 19:57:43,209 INFO     [base.py:1842] [cached since 546.5s ago] (UUID('11111111-1111-1111-1111-111111111111'), UUID('e4b90b74-8b33-4e01-afc0-4357877b2324'), 'NEW')
+2025-06-13 19:57:43,210 INFO     [base.py:2701] ROLLBACK
+2025-06-13 19:57:43,211 DEBUG    [main.py:35] Ответ: 404
+2025-06-13 20:26:12,936 INFO     [main.py:43] Приложение запущено
+2025-06-13 20:27:21,330 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 20:27:21,331 DEBUG    [main.py:51] Ответ: 422
+2025-06-13 20:28:05,818 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 20:28:05,844 INFO     [base.py:1842] select pg_catalog.version()
+2025-06-13 20:28:05,844 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 20:28:05,846 INFO     [base.py:1842] select current_schema()
+2025-06-13 20:28:05,846 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 20:28:05,847 INFO     [base.py:1842] show standard_conforming_strings
+2025-06-13 20:28:05,847 INFO     [base.py:1842] [raw sql] ()
+2025-06-13 20:28:05,848 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:28:05,861 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:28:05,861 INFO     [base.py:1842] [generated in 0.00025s] ('6518b19-4c00-4fa5-b108-7b7f54b110a1',)
+2025-06-13 20:28:05,869 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:28:05,870 DEBUG    [main.py:51] Ответ: 401
+2025-06-13 20:28:22,635 DEBUG    [main.py:48] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 20:28:22,638 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:28:22,640 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 20:28:22,640 INFO     [base.py:1842] [generated in 0.00032s] (UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'), 'ivan_ivanov', '', '1e866738-f264-4082-9d25-a1ce8ace4551', 'ADMIN', datetime.datetime(2025, 6, 13, 20, 28, 22, 640654, tzinfo=datetime.timezone.utc))
+2025-06-13 20:28:22,642 INFO     [base.py:2704] COMMIT
+2025-06-13 20:28:22,645 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:28:22,647 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:28:22,647 INFO     [base.py:1842] [generated in 0.00022s] (UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'),)
+2025-06-13 20:28:22,649 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:28:22,649 DEBUG    [main.py:51] Ответ: 201
+2025-06-13 20:28:38,402 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/order/11111111-1111-1111-1111-111111111111
+2025-06-13 20:28:38,403 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:28:38,404 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:28:38,404 INFO     [base.py:1842] [cached since 29.83s ago] ('1e866738-f264-4082-9d25-a1ce8ace4551',)
+2025-06-13 20:28:38,407 INFO     [base.py:1842] SELECT orders.id, orders.user_id, orders.ticker, orders.side, orders.quantity, orders.price, orders.status, orders.filled_qty, orders.created_at 
+FROM orders 
+WHERE orders.id = $1::UUID AND orders.user_id = $2::UUID AND orders.status = $3::orderstatusenum
+2025-06-13 20:28:38,407 INFO     [base.py:1842] [generated in 0.00023s] (UUID('11111111-1111-1111-1111-111111111111'), UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'), 'NEW')
+2025-06-13 20:28:38,412 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:28:38,413 DEBUG    [main.py:51] Ответ: 404
+2025-06-13 20:47:54,040 DEBUG    [main.py:48] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 20:47:54,044 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:47:54,044 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 20:47:54,044 INFO     [base.py:1842] [cached since 1073s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'), 'admin_user', '', '55e4a965-19c5-4c29-a50f-1b4b6f33b7d5', 'ADMIN', datetime.datetime(2025, 6, 13, 20, 47, 54, 44573, tzinfo=datetime.timezone.utc))
+2025-06-13 20:47:54,046 INFO     [base.py:2704] COMMIT
+2025-06-13 20:47:54,049 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:47:54,049 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:47:54,049 INFO     [base.py:1842] [cached since 1073s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:47:54,051 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:47:54,052 DEBUG    [main.py:51] Ответ: 201
+2025-06-13 20:48:12,493 DEBUG    [main.py:48] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 20:48:12,495 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:48:12,496 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 20:48:12,496 INFO     [base.py:1842] [cached since 1092s ago] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'), 'simple_user', '', '4a82c6ad-d31e-4005-9963-c3d08e9166d6', 'USER', datetime.datetime(2025, 6, 13, 20, 48, 12, 496369, tzinfo=datetime.timezone.utc))
+2025-06-13 20:48:12,498 INFO     [base.py:2704] COMMIT
+2025-06-13 20:48:12,501 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:48:12,502 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:48:12,502 INFO     [base.py:1842] [cached since 1092s ago] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'),)
+2025-06-13 20:48:12,504 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:48:12,505 DEBUG    [main.py:51] Ответ: 201
+2025-06-13 20:49:32,536 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/58a16c1d-b3bd-4715-9c3d-67280a554ab7
+2025-06-13 20:49:32,537 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:49:32,537 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:49:32,538 INFO     [base.py:1842] [cached since 1181s ago] ('4a82c6ad-d31e-4005-9963-c3d08e9166d6',)
+2025-06-13 20:49:32,540 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:49:32,540 INFO     [base.py:1842] [generated in 0.00023s] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'),)
+2025-06-13 20:49:32,541 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:49:32,542 DEBUG    [main.py:51] Ответ: 403
+2025-06-13 20:52:19,236 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/f814b329-8edf-46c9-bfd5-4088ac277639
+2025-06-13 20:52:19,237 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:52:19,238 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:52:19,238 INFO     [base.py:1842] [cached since 1334s ago] ('55e4a965-19c5-4c29-a50f-1b4b6f33b7d5',)
+2025-06-13 20:52:19,240 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:52:19,240 INFO     [base.py:1842] [cached since 153s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:52:19,242 INFO     [base.py:1842] DELETE FROM orders WHERE orders.user_id = $1::UUID
+2025-06-13 20:52:19,242 INFO     [base.py:1842] [generated in 0.00026s] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'),)
+2025-06-13 20:52:19,245 INFO     [base.py:1842] DELETE FROM balances WHERE balances.user_id = $1::UUID
+2025-06-13 20:52:19,245 INFO     [base.py:1842] [generated in 0.00019s] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'),)
+2025-06-13 20:52:19,248 INFO     [base.py:1842] DELETE FROM transactions WHERE transactions.buy_order_id = $1::UUID OR transactions.sell_order_id = $2::UUID
+2025-06-13 20:52:19,248 INFO     [base.py:1842] [generated in 0.00028s] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'), UUID('f814b329-8edf-46c9-bfd5-4088ac277639'))
+2025-06-13 20:52:19,252 INFO     [base.py:1842] DELETE FROM users WHERE users.id = $1::UUID
+2025-06-13 20:52:19,252 INFO     [base.py:1842] [generated in 0.00021s] (UUID('f814b329-8edf-46c9-bfd5-4088ac277639'),)
+2025-06-13 20:52:19,253 INFO     [base.py:2704] COMMIT
+2025-06-13 20:52:19,256 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 20:52:57,923 DEBUG    [main.py:48] Входящий запрос: POST http://localhost:8000/api/v1/public/register
+2025-06-13 20:52:57,924 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:52:57,924 INFO     [base.py:1842] INSERT INTO users (id, username, password_hash, api_key, role, created_at) VALUES ($1::UUID, $2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::userrole, $6::TIMESTAMP WITH TIME ZONE)
+2025-06-13 20:52:57,924 INFO     [base.py:1842] [cached since 1353s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'), 'simple_user', '', '6abce95b-e2cc-49ad-8a0d-839b82b6a749', 'USER', datetime.datetime(2025, 6, 13, 20, 52, 57, 924765, tzinfo=datetime.timezone.utc))
+2025-06-13 20:52:57,926 INFO     [base.py:2704] COMMIT
+2025-06-13 20:52:57,932 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:52:57,932 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:52:57,933 INFO     [base.py:1842] [cached since 1353s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'),)
+2025-06-13 20:52:57,934 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:52:57,935 DEBUG    [main.py:51] Ответ: 201
+2025-06-13 20:53:26,248 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/f814b329-8edf-46c9-bfd5-4088ac277639
+2025-06-13 20:53:26,249 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:53:26,250 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:53:26,250 INFO     [base.py:1842] [cached since 1395s ago] ('4a82c6ad-d31e-4005-9963-c3d08e9166d6',)
+2025-06-13 20:53:26,251 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:53:26,252 DEBUG    [main.py:51] Ответ: 401
+2025-06-13 20:54:41,105 DEBUG    [main.py:48] Входящий запрос: GET http://localhost:8000/api/v1/admin/users
+2025-06-13 20:54:41,106 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:54:41,107 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:54:41,107 INFO     [base.py:1842] [cached since 1465s ago] ('55e4a965-19c5-4c29-a50f-1b4b6f33b7d5',)
+2025-06-13 20:54:41,109 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:54:41,109 INFO     [base.py:1842] [cached since 284.1s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:54:41,110 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users
+2025-06-13 20:54:41,110 INFO     [base.py:1842] [generated in 0.00014s] ()
+2025-06-13 20:54:41,111 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:54:41,112 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 20:55:08,274 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/8fd54a68-dd92-4322-b266-9f2f24cb5966
+2025-06-13 20:55:08,276 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:55:08,276 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:55:08,276 INFO     [base.py:1842] [cached since 1489s ago] ('6abce95b-e2cc-49ad-8a0d-839b82b6a749',)
+2025-06-13 20:55:08,278 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:55:08,278 INFO     [base.py:1842] [cached since 308.5s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'),)
+2025-06-13 20:55:08,279 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:55:08,279 DEBUG    [main.py:51] Ответ: 403
+2025-06-13 20:56:18,286 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/58a16c1d-b3bd-4715-9c3d-67280a554ab7
+2025-06-13 20:56:18,287 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:56:18,288 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:56:18,288 INFO     [base.py:1842] [cached since 1553s ago] ('55e4a965-19c5-4c29-a50f-1b4b6f33b7d5',)
+2025-06-13 20:56:18,289 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:56:18,289 INFO     [base.py:1842] [cached since 373s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:56:18,290 INFO     [base.py:1842] DELETE FROM orders WHERE orders.user_id = $1::UUID
+2025-06-13 20:56:18,290 INFO     [base.py:1842] [cached since 219.9s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:56:18,291 INFO     [base.py:1842] DELETE FROM balances WHERE balances.user_id = $1::UUID
+2025-06-13 20:56:18,291 INFO     [base.py:1842] [cached since 219.9s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:56:18,292 INFO     [base.py:1842] DELETE FROM transactions WHERE transactions.buy_order_id = $1::UUID OR transactions.sell_order_id = $2::UUID
+2025-06-13 20:56:18,292 INFO     [base.py:1842] [cached since 219.9s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'), UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'))
+2025-06-13 20:56:18,292 INFO     [base.py:1842] DELETE FROM users WHERE users.id = $1::UUID
+2025-06-13 20:56:18,293 INFO     [base.py:1842] [cached since 219.9s ago] (UUID('58a16c1d-b3bd-4715-9c3d-67280a554ab7'),)
+2025-06-13 20:56:18,293 INFO     [base.py:2704] COMMIT
+2025-06-13 20:56:18,300 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 20:57:26,060 DEBUG    [main.py:48] Входящий запрос: GET http://localhost:8000/api/v1/admin/users
+2025-06-13 20:57:26,061 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:57:26,062 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:57:26,062 INFO     [base.py:1842] [cached since 1616s ago] ('1e866738-f264-4082-9d25-a1ce8ace4551',)
+2025-06-13 20:57:26,064 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:57:26,064 INFO     [base.py:1842] [cached since 435.4s ago] (UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'),)
+2025-06-13 20:57:26,065 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users
+2025-06-13 20:57:26,065 INFO     [base.py:1842] [cached since 151.3s ago] ()
+2025-06-13 20:57:26,066 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:57:26,067 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 20:57:56,264 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/8fd54a68-dd92-4322-b266-9f2f24cb5966
+2025-06-13 20:57:56,265 DEBUG    [main.py:51] Ответ: 422
+2025-06-13 20:58:21,793 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/not-a-uuid
+2025-06-13 20:58:21,794 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 20:58:21,794 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 20:58:21,795 INFO     [base.py:1842] [cached since 1666s ago] ('1e866738-f264-4082-9d25-a1ce8ace4551',)
+2025-06-13 20:58:21,796 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 20:58:21,796 INFO     [base.py:1842] [cached since 485.7s ago] (UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'),)
+2025-06-13 20:58:21,797 INFO     [base.py:2701] ROLLBACK
+2025-06-13 20:58:21,798 DEBUG    [main.py:51] Ответ: 422
+2025-06-13 21:04:54,670 DEBUG    [main.py:48] Входящий запрос: GET http://localhost:8000/api/v1/admin/users
+2025-06-13 21:04:54,672 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 21:04:54,672 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 21:04:54,673 INFO     [base.py:1842] [cached since 2026s ago] ('1e866738-f264-4082-9d25-a1ce8ace4551',)
+2025-06-13 21:04:54,674 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 21:04:54,674 INFO     [base.py:1842] [cached since 845.9s ago] (UUID('6c04b5d1-a4a4-481c-ba80-5c6eff7dc8c0'),)
+2025-06-13 21:04:54,675 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users
+2025-06-13 21:04:54,675 INFO     [base.py:1842] [cached since 561.8s ago] ()
+2025-06-13 21:04:54,676 INFO     [base.py:2701] ROLLBACK
+2025-06-13 21:04:54,677 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 21:05:44,923 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/8fd54a68-dd92-4322-b266-9f2f24cb5966
+2025-06-13 21:05:44,925 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 21:05:44,925 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 21:05:44,925 INFO     [base.py:1842] [cached since 2071s ago] ('6abce95b-e2cc-49ad-8a0d-839b82b6a749',)
+2025-06-13 21:05:44,927 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 21:05:44,927 INFO     [base.py:1842] [cached since 890.7s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'),)
+2025-06-13 21:05:44,928 INFO     [base.py:2701] ROLLBACK
+2025-06-13 21:05:44,929 DEBUG    [main.py:51] Ответ: 403
+2025-06-13 21:05:51,891 DEBUG    [main.py:48] Входящий запрос: DELETE http://localhost:8000/api/v1/admin/user/8fd54a68-dd92-4322-b266-9f2f24cb5966
+2025-06-13 21:05:51,893 INFO     [base.py:2698] BEGIN (implicit)
+2025-06-13 21:05:51,893 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.api_key = $1::VARCHAR
+2025-06-13 21:05:51,893 INFO     [base.py:1842] [cached since 2078s ago] ('6abce95b-e2cc-49ad-8a0d-839b82b6a749',)
+2025-06-13 21:05:51,895 INFO     [base.py:1842] SELECT users.id, users.username, users.password_hash, users.api_key, users.role, users.created_at 
+FROM users 
+WHERE users.id = $1::UUID
+2025-06-13 21:05:51,895 INFO     [base.py:1842] [cached since 897.7s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'),)
+2025-06-13 21:05:51,896 INFO     [base.py:2701] ROLLBACK
+2025-06-13 21:05:51,896 DEBUG    [main.py:51] Ответ: 403

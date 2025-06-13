@@ -2,7 +2,7 @@ from uuid import uuid4, UUID
 from datetime import datetime, timezone
 from typing import Union, List
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 

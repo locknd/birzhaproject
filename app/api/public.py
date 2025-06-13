@@ -1,10 +1,11 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
-from sqlalchemy import select
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, status, Request
+from sqlalchemy import select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
-from uuid import uuid4
+from uuid import uuid4, UUID
+from app.deps import get_current_user
 from sqlalchemy import select, func, desc, asc, or_
 
 # SQLAlchemy-модель
@@ -13,12 +14,14 @@ from app.models import Instrument as InstrumentModel, Transaction as Transaction
 from app.schemas import Instrument as InstrumentSchema, Transaction as TransactionSchema
 
 from app.deps import get_db
-from app.models import User, Order
+from app.models import User, Order, OrderStatusEnum
 from app.schemas import (
     NewUser,
     UserOut,
     L2OrderBook,
-    Level
+    Level,
+    Ok,
+
 )
 
 
@@ -66,6 +69,7 @@ router = APIRouter(
     "/register",
     response_model=UserOut,
     status_code=status.HTTP_201_CREATED,
+    response_model_by_alias=False
 )
 async def register(
     user: NewUser,
@@ -233,3 +237,72 @@ async def get_transaction_history(
         )
         for t in trades
     ]
+
+# @router.delete(
+#     "/{order_id}",
+#     response_model=Ok,
+#     status_code=status.HTTP_200_OK,
+# )
+# async def cancel_order(
+#     order_id: UUID,
+#     current_user: UUID = Depends(get_current_user),
+#     db: AsyncSession = Depends(get_db),
+# ):
+#     stmt = select(Order).where(
+#         Order.id == order_id,
+#         Order.user_id == current_user,
+#         Order.status == OrderStatusEnum.NEW,
+#     )
+#     res = await db.execute(stmt)
+#     o = res.scalar_one_or_none()
+#     if not o:
+#         raise HTTPException(status_code=404, detail="Order not found or cannot cancel")
+
+#     await db.execute(
+#         update(Order).where(Order.id == order_id).values(status=OrderStatusEnum.CANCELLED)
+#     )
+#     await db.commit()
+
+#     return Ok()
+@router.delete(
+    "/{order_id}",
+    response_model=Ok,
+    status_code=status.HTTP_200_OK,
+)
+async def cancel_order(
+    request: Request,
+    order_id: UUID = Path(..., description="Order ID", format="uuid4"),
+    current_user: UUID = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    # 1. Проверка на наличие тела в DELETE-запросе
+    body = await request.body()
+    print(f"DEBUG: body={body!r}")
+    if body not in (b"", b"{}"):
+        raise HTTPException(
+            status_code=422,
+            detail="DELETE-запрос не должен содержать тело"
+        )
+
+    # 2. Проверка существования ордера и возможности отмены
+    stmt = select(Order).where(
+        Order.id == order_id,
+        Order.user_id == current_user,
+        Order.status == OrderStatusEnum.NEW,
+    )
+    res = await db.execute(stmt)
+    o = res.scalar_one_or_none()
+    if not o:
+        raise HTTPException(status_code=404, detail="Order not found or cannot cancel")
+
+    # 3. Попытка отмены ордера
+    try:
+        await db.execute(
+            update(Order).where(Order.id == order_id).values(status=OrderStatusEnum.CANCELLED)
+        )
+        await db.commit()
+    except Exception:
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+    # 4. Успешный ответ
+    return Ok()
