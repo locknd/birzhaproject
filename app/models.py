@@ -7,7 +7,7 @@ from sqlalchemy import (
     Column,
     String,
     DateTime,
-    Numeric,
+    Integer,
     ForeignKey,
     Enum as SQLEnum  # aliased to avoid conflict with Python's enum.Enum
 )
@@ -74,7 +74,20 @@ class Instrument(Base):
         default=InstrumentStatusEnum.ACTIVE,
         nullable=False
     )
-
+    currency = Column(
+        String(length=3),
+        nullable=False,
+        default="RUB",
+        server_default="RUB",
+        index=True,
+        comment="Валюта расчёта (RUB по умолчанию)"
+    )
+    current_price = Column(
+        Integer,  # Тип данных для хранения цены с точностью до 8 знаков после запятой
+        nullable=False,
+        default=0,
+        comment="Текущая цена инструмента (для рыночного ордера)"
+    )
     balances     = relationship("Balance",     back_populates="instrument", cascade="all, delete-orphan")
     orders       = relationship("Order",       back_populates="instrument", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="instrument", cascade="all, delete-orphan")
@@ -92,7 +105,7 @@ class Balance(Base):
     )
     user_id = Column(PG_UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     ticker  = Column(String, ForeignKey("instruments.ticker"), nullable=False)
-    amount  = Column(Numeric(20, 8), default=0, nullable=False)
+    amount  = Column(Integer, default=0, nullable=False)
 
     user       = relationship("User",       back_populates="balances")
     instrument = relationship("Instrument", back_populates="balances")
@@ -111,10 +124,10 @@ class Order(Base):
     user_id     = Column(PG_UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     ticker      = Column(String, ForeignKey("instruments.ticker"), nullable=False)
     side        = Column(SQLEnum(OrderSideEnum, name="ordersideenum", native_enum=True), nullable=False)
-    quantity    = Column(Numeric(20, 8), nullable=False)
-    price       = Column(Numeric(20, 8), nullable=True)
+    quantity    = Column(Integer, nullable=False)
+    price       = Column(Integer, nullable=True)
     status      = Column(SQLEnum(OrderStatusEnum, name="orderstatusenum", native_enum=True), default=OrderStatusEnum.NEW, nullable=False)
-    filled_qty  = Column(Numeric(20, 8), default=0, nullable=False)
+    filled_qty  = Column(Integer, default=0, nullable=False)
     created_at  = Column(DateTime(timezone=True), default=lambda: datetime.datetime.now(timezone.utc), nullable=False)
 
     user            = relationship("User",       back_populates="orders")
@@ -136,8 +149,8 @@ class Transaction(Base):
     buy_order_id  = Column(PG_UUID(as_uuid=True), ForeignKey("orders.id"), nullable=False)
     sell_order_id = Column(PG_UUID(as_uuid=True), ForeignKey("orders.id"), nullable=False)
     ticker        = Column(String, ForeignKey("instruments.ticker"), nullable=False)
-    quantity      = Column(Numeric(20, 8), nullable=False)
-    price         = Column(Numeric(20, 8), nullable=False)
+    quantity      = Column(Integer, nullable=False)
+    price         = Column(Integer, nullable=False)
     timestamp     = Column(DateTime(timezone=True), default=lambda: datetime.datetime.now(timezone.utc), nullable=False)
 
     buy_order  = relationship("Order", back_populates="buy_transactions",  foreign_keys=[buy_order_id])

@@ -1,13 +1,13 @@
 import os
 from typing import AsyncGenerator
 from uuid import UUID
-
-from fastapi import Header, HTTPException, status
-
+from fastapi import HTTPException, status, Depends
+from app.models import User
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import select
+from fastapi.security import APIKeyHeader
 
-from app.api.public import users        # in-memory users store
 # from app.models import User             # SQLAlchemy модель пользователя ЗАГЛУШКА ((замените in-memory-хранилище на настоящий запрос к БД (тогда и понадобятся User + UserOut)))
 # from app.schemas.auth import UserOut    # Pydantic схема пользователя
 
@@ -36,22 +36,34 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
             await session.close()
 
 # 4) Депенденси для получения текущего пользователя по API-ключу
+
+api_key_header = APIKeyHeader(name="Authorization", auto_error=False)
+
 async def get_current_user(
-    api_key: str = Header(None, alias="Authorization")
+    api_key: str = Depends(api_key_header),
+    db: AsyncSession = Depends(get_db),
 ) -> UUID:
     """
-    Извлекает текущего пользователя по API-ключу из заголовка Authorization.
+    Извлекает текущего пользователя по API-ключу из заголовка Authorization,
+    ищет его в таблице users и возвращает user.id.
     """
     if not api_key:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing API key"
         )
-    # ищем в in-memory store из public.py
-    for user in users.values():
-        if user.api_key == api_key:
-            return user.id
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid API key"
+
+    # Ищем в БД
+    result = await db.scalar(
+        select(User).where(User.api_key == api_key)
     )
+    user: User | None = result  # type: ignore
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid API key"
+        )
+
+    return user.id
+

@@ -2,28 +2,37 @@ services:
   db:
     image: postgres:17
     restart: always
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass123
-      POSTGRES_DB: exchange
+    env_file:
+      - .env
     ports:
-      - "5432:5432"
+      - "15432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user", "-d", "exchange"]
+      interval: 5s
+      retries: 5
 
   backend:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./:/app               # монтируем код внутрь контейнера
+      - ./:/app
     ports:
-      - "8000:8000"           # выдаём наружу порт 8000
-    environment:
-      # строка подключения к Postgres из контейнера
-      DATABASE_URL: postgresql+asyncpg://user:pass123@db:5432/exchange
+      - "8000:8000"
+    env_file:
+      - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    command: >
+      bash -c "
+        # 1) прогоняем миграции
+        alembic upgrade head &&
+        # 2) запускаем FastAPI
+        uvicorn app.main:app --host 0.0.0.0 --port 8000
+      "
 
 volumes:
   pgdata:
