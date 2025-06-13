@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 @router.get(
-    "/",
+    "",
     response_model=List[BalanceOut],
     status_code=status.HTTP_200_OK,
 )

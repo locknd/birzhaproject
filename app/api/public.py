@@ -27,7 +27,41 @@ router = APIRouter(
     tags=["Public"],
 )
 
+# @router.post(
+#     "/register",
+#     response_model=UserOut,
+#     status_code=status.HTTP_201_CREATED,
+# )
+# async def register(
+#     user: NewUser,
+#     db: AsyncSession = Depends(get_db),
+# ):
+#     """
+#     Регистрация пользователя в платформе. Обязательна для совершения сделок.
+#     api_key, полученный из этого метода, следует передавать в другие через заголовок Authorization.
+#     """
+#     user_id = uuid4()
+#     api_key = f"key-{uuid4()}"
+#     new_user = User(
+#         id=user_id,
+#         username=user.name,
+#         password_hash="",  # пока заглушка
+#         api_key=api_key,
+#         role=user.role,
+#     )
 
+#     db.add(new_user)
+#     try:
+#         await db.commit()
+#     except IntegrityError:
+#         await db.rollback()
+#         raise HTTPException(
+#             status_code=status.HTTP_409_CONFLICT,
+#             detail="Username already exists"
+#         )
+
+#     await db.refresh(new_user)
+#     return new_user
 @router.post(
     "/register",
     response_model=UserOut,

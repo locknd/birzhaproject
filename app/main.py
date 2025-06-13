@@ -9,7 +9,7 @@ from app.api.user import router as user_router
 # Настройка логирования ДО создания app
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
-    level=logging.DEBUG,
+    level=logging.DEBUG,    
     handlers=[
         logging.StreamHandler(),  # Вывод в консоль
         logging.FileHandler('app.log', mode='a')  # Запись в файл

@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/v1/order", tags=["Order"])
 
 
 @router.post(
-    "/",
+    "",
     response_model=CreateOrderResponse,
     status_code=status.HTTP_201_CREATED,
 )
@@ -71,7 +71,7 @@ async def create_order(
 
 
 @router.get(
-    "/",
+    "",
     response_model=List[Union[LimitOrder, MarketOrder]],
     status_code=status.HTTP_200_OK,
 )

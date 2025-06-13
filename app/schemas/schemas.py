@@ -31,7 +31,7 @@ def _validate_ticker(cls, v, field):
 
 # === User schemas ===
 class NewUser(BaseModel):
-    name: str = Field(..., min_length=3, max_length=50, description="Уникальное имя пользователя")
+    name: str = Field(..., min_length=3, description="Уникальное имя пользователя")
     role: Literal["USER", "ADMIN"] = Field("USER", description="Роль пользователя")
 
     model_config = ConfigDict(

@@ -4,13 +4,13 @@ from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.deps import get_current_user, get_db
 from app.models import User, Balance, Order, Transaction
-from app.schemas import Ok
+from app.schemas import Ok, UserOut
 
-router = APIRouter(prefix="/api/v1/admin/user", tags=["User"])
+router = APIRouter(prefix="/api/v1/admin/user", tags=["User"], dependencies=[Depends(get_current_user)])
 
 
 
-@router.delete("/{user_id}", response_model=Ok)
+@router.delete("/{user_id}", response_model=UserOut)
 async def delete_user(
     user_id: UUID,
     current_user_id: UUID = Depends(get_current_user),  # Получаем текущего пользователя
