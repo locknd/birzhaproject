@@ -2,9 +2,9 @@ import re
 from enum import Enum
 from uuid import UUID
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import List, Literal, Optional, constr
 
-from pydantic import BaseModel, Field, field_validator, ConfigDict
+from pydantic import BaseModel, Field, field_validator, ConfigDict, constr
 
 # === ENUM'ы ===
 class UserRole(str, Enum):
@@ -55,14 +55,16 @@ class UserOut(BaseModel):
         return v.upper() if isinstance(v, str) else v
 
 # === Instrument & OrderBook schemas ===
-class Instrument(BaseModel):
-    name: str
-    ticker: str
+class InstrumentSchema(BaseModel):
+    name: constr(min_length=2, max_length=50) = Field(..., description="Название инструмента (от 2 до 50 символов)")
+    ticker: constr(regex="^[A-Z]{2,10}$") = Field(..., description="Тикер инструмента (2-10 заглавных латинских букв)")
     currency: Literal["RUB"] = Field("RUB", description="Валюта расчёта — всегда RUB")
 
     model_config = ConfigDict(
         from_attributes=True,
-        json_schema_extra={"example": {"name": "Bitcoin / RUB", "ticker": "BTCRUB", "currency": "RUB"}}
+        json_schema_extra={
+            "example": {"name": "Bitcoin / RUB", "ticker": "BTCRUB", "currency": "RUB"}
+        }
     )
 
 class Level(BaseModel):

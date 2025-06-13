@@ -38,19 +38,14 @@ async def add_instrument(
     _admin: User = Depends(get_current_admin),
     db: AsyncSession = Depends(get_db),
 ):
-    # Проверка уникальности
+    # Проверка уникальности тикера
     stmt = select(Instrument).where(Instrument.ticker == instr.ticker)
-    
-    # Дожидаемся выполнения запроса
     result = await db.execute(stmt)
     instrument = result.scalar_one_or_none()
-
     if instrument:
-        raise HTTPException(status_code=409,
-                            detail=f"Instrument {instr.ticker} already exists")
-    
+        raise HTTPException(status_code=409, detail=f"Instrument {instr.ticker} already exists")
     # Создаём новый инструмент
-    new = Instrument(ticker=instr.ticker, name=instr.name)
+    new = Instrument(ticker=instr.ticker, name=instr.name, currency=instr.currency)
     db.add(new)
     await db.commit()
     return Ok()

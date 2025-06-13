@@ -1182,3 +1182,7 @@ WHERE users.id = $1::UUID
 2025-06-13 21:05:51,895 INFO     [base.py:1842] [cached since 897.7s ago] (UUID('8fd54a68-dd92-4322-b266-9f2f24cb5966'),)
 2025-06-13 21:05:51,896 INFO     [base.py:2701] ROLLBACK
 2025-06-13 21:05:51,896 DEBUG    [main.py:51] Ответ: 403
+2025-06-13 21:39:34,433 DEBUG    [main.py:48] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 21:39:34,438 DEBUG    [main.py:51] Ответ: 200
+2025-06-13 21:39:34,542 DEBUG    [main.py:48] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 21:39:34,595 DEBUG    [main.py:51] Ответ: 200
