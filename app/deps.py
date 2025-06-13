@@ -37,23 +37,28 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 # 4) Депенденси для получения текущего пользователя по API-ключу
 
-api_key_header = APIKeyHeader(name="Authorization", auto_error=False)
+from fastapi import Header
+
 
 async def get_current_user(
-    api_key: str = Depends(api_key_header),
+    authorization: str = Header(..., description="Введите `TOKEN <ваш_api_key>`"),
     db: AsyncSession = Depends(get_db),
 ) -> UUID:
     """
-    Извлекает текущего пользователя по API-ключу из заголовка Authorization,
-    ищет его в таблице users и возвращает user.id.
+    Извлекает текущего пользователя по API-ключу из заголовка Authorization.
+    Ожидает заголовок вида: Authorization: TOKEN <api_key>
     """
-    if not api_key:
+    # Проверяем префикс
+    prefix = "TOKEN "
+    if not authorization.startswith(prefix):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Missing API key"
+            detail="Missing or wrong token prefix"
         )
 
-    # Ищем в БД
+    api_key = authorization[len(prefix):].strip()
+
+    # Ищем пользователя
     result = await db.scalar(
         select(User).where(User.api_key == api_key)
     )
@@ -66,4 +71,3 @@ async def get_current_user(
         )
 
     return user.id
-
