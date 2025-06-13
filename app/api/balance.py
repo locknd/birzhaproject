@@ -10,7 +10,7 @@ from app.models import Balance, Instrument
 from app.schemas import BalanceOut, DepositBody, WithdrawBody, Ok
 
 router = APIRouter(
-    prefix="/api/v1/balance",
+    prefix="/api/v1/admin/balance",
     tags=["Balance"],
 )
 

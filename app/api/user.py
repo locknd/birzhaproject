@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/v1/user", tags=["User"])
 
 
 
-@router.delete("/user/{user_id}", response_model=Ok)
+@router.delete("/admin/{user_id}", response_model=Ok)
 async def delete_user(
     user_id: UUID,
     current_user_id: UUID = Depends(get_current_user),  # Получаем текущего пользователя
