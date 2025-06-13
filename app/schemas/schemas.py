@@ -2,11 +2,11 @@ import re
 from enum import Enum
 from uuid import UUID
 from datetime import datetime
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field, field_validator, ConfigDict
 
-# === ENUM’ы ===
+# === ENUM'ы ===
 class UserRole(str, Enum):
     USER  = "USER"
     ADMIN = "ADMIN"
@@ -40,8 +40,8 @@ class NewUser(BaseModel):
 
 class UserOut(BaseModel):
     id: UUID = Field(..., description="UUID пользователя", format="uuid4")
-    name: str = Field(..., alias="username", description="Имя пользователя")
-    role: UserRole = Field(..., description="Роль пользователя")
+    name: str | None = Field(default=None, alias="username", description="Имя пользователя")
+    role: Optional[UserRole] = Field(default=UserRole.USER, description="Роль пользователя")
     api_key: str = Field(..., description="API-ключ")
 
     model_config = ConfigDict(

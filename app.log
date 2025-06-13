@@ -777,3 +777,7 @@ FROM users
 2025-06-13 15:46:04,622 INFO     [base.py:1842] [cached since 46.88s ago] ()
 2025-06-13 15:46:04,623 INFO     [base.py:2701] ROLLBACK
 2025-06-13 15:46:04,624 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 15:55:24,135 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/docs
+2025-06-13 15:55:24,136 DEBUG    [main.py:35] Ответ: 200
+2025-06-13 15:55:24,235 DEBUG    [main.py:32] Входящий запрос: GET http://localhost:8000/openapi.json
+2025-06-13 15:55:24,236 DEBUG    [main.py:35] Ответ: 200
